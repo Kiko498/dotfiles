@@ -1,0 +1,6 @@
+amixer sset 'Master' on		- turns speakers on
+amixer sset 'Master' 100%	- sets output level
+
+# Turning off beeps
+
+	xset b off

@@ -1,0 +1,4 @@
+xinit i3 - 		starts i3
+startx -		starts i3
+
+i3-msg exit -		exits i3

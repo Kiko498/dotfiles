@@ -1,0 +1,2 @@
+xrandr | grep "connected" 			- displays screens
+xrandr --output "SCREEN" --brigthness 0-1	- changes brightness 

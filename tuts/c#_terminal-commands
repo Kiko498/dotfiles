@@ -1,0 +1,4 @@
+vim programname.cs		- creates a .cs script
+
+mcs programname.cs 		- compiles the script
+mono programname.exe		- runs the script

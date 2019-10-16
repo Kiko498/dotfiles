@@ -1,0 +1,10 @@
+i3-msg gaps inner all plus 10
+i3-msg gaps inner all minus 10
+amixer sset 'Master' 50
+xrandr -q | grep " connected"
+xrandr --output LVDS1 --brightness .8
+
+# WIFI INSTALL
+pacman -S networkmanager
+systemctl enable NetworkManager
+pacman -S iw wpa_supplicant dialog

@@ -1,0 +1,21 @@
+# config file	/etc/wpa_supplicant/wpa_supplicant.conf
+
+		network={
+			ssid="NETOWRK_NAME"
+			psk="PASSWORD_KEY"
+		}
+
+# enabling interface
+	
+	ifconfig wlan0 up
+
+# connecting
+
+	wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+		-B: run daemon in the background
+		-i: interface name
+		-c: configuration file
+
+	dhclient wlan0
+
+connected :)

@@ -1,0 +1,15 @@
+nmcli c 		- saved connection list
+
+nmcli d wifi list 	- list of available connections
+iwlist wlan0 scanning	- same
+
+ifconfig -a 		- list of all interfaces
+
+nmcli d wifi connect "SSID" password "PSK" 			- connect
+nmcli d wifi connect "SSID" password "PSK" iface "INTERFACE" 	- 2nd solution
+
+nmcli c delete <SSID>			- reemoves network from the table
+
+c - con - connection
+d - dev - device
+

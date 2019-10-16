@@ -1,0 +1,2 @@
+service mysql start		- starts mysql server
+mysql -uroot -p			- mysql interface
