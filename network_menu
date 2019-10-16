@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#nmcli d wifi list | awk ' { print $1; } ' | dmenu
+ssid=$(nmcli d wifi list | awk ' { print $1; } ' | dmenu -p "Choose a netwrk")
+
+pswd=$(echo "$ssid" | dmenu -p "Enter password for: ")
+
+nmcli d wifi connect $ssid passowrd $pswd
+echo "Connecting to the network $ssid" | dmenu

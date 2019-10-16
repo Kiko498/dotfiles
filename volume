@@ -1,0 +1,12 @@
+#!/bin/bash
+#dmenu volume setting
+
+#[ $(echo -e "20\n40\n60\n80\n100" | dmenu -i -p "Choose volume percentage:") == "20" ] && amixer sset 'Master' 20%
+
+
+
+choices="20\n40\n60\n80\n100"
+
+chosen=$(echo -e "$choices" | dmenu -p "Choose volume percentage")
+
+amixer sset 'Master' $chosen

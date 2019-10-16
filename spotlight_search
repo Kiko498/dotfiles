@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# input
+input=$(echo -e "$(ls /sbin/)" | dmenu -p "Spotlight")
+
+
+
+# no input given
+if [ $input == ""]
+then
+	exit
+fi
+
+
+
+# calculator
+if [ ${input: -1} == "=" ]
+then
+	echo ${input%?} | bc | dmenu
+	exit
+fi
+
+
+
+# executing program
+
+if [ "$(echo "$(ls /sbin/)" | grep $input)" != "" ]
+	then
+		if [ $(echo $input | grep "$(echo "$(ls /sbin/)" | grep $input)") == $input ]
+			then
+				$input
+				exit
+		fi
+fi
+
+
+
+# search files
+searchSymbol=","
+
+if [ $input == ""]
+then
+	exit
+fi
+# SEARCH FOR FILENAMES as well
+if [ "$(echo "$(grep -R -i "$input" /root/Documents)")" != "" ] || [ "$(echo "$(grep -R -i "${input%$searchSymbol}" /root/Documents)")" != "" ] || [ "$(echo "$(find /root/Documents/*)" | grep -i $input)" != "" ] || [ "$(echo "$(find /root/Documents/*)" | grep -i "${input%$searchSymbol}")" != "" ]
+
+then
+	input=${input%$searchSymbol}
+	searchInput=$(echo -e "$(grep -R -i "$input" /root/Documents)" | grep -v "Binary file")
+	#searchInput=$(echo -e "$(grep -R -i "$input" /root/Documents)")
+#echo "${searchInput%:*}" | dmenu -l 20
+#echo "${searchInput%:*}" | dmenu -l 20
+#searchListInput=$(echo -e "$searchInput" | dmenu -l 20 -p "Choose a file: ")
+
+	if [ "$(echo "$(find /root/Documents/*)" | grep -i $input)" != "" ]
+	then
+		fileNames=$(echo "$(find /root/Documents/*)" | grep -i $input)
+	else
+		fileNames=$(echo "$(find /root/Documents/*)" | grep -i "${input%$searchSymbol}")
+	fi
+
+	searchListInput=$(echo -e "\n |-----   Text found in files   -----| \n \n $searchInput \n \n |-----   Filenames Found   -----| \n \n $fileNames \n \n" | dmenu -l 20 -p "Choose a file: ")
+	
+	if [ $searchListInput == ""]
+	then 
+		exit
+	fi
+
+	decision=$(echo -e "Open\nRead\nShow In Explorer" | dmenu -p "Take Action: ")
+	case "$decision" in
+		Open) urxvt -e sh -c "vim ${searchListInput%:*}" ;;
+		Read) echo "$(cat ${searchListInput%:*})" | dmenu -l 20 ;;
+	esac
+
+	exit
+fi
+
+
+
+# browsing online
+#	IF ENDING WITH '$searchSymbol', remove it
+# 	SEARCH SUGGESTIONS ! ! !
+firefox --search "$input"
