@@ -1,0 +1,32 @@
+*foreground: #ffffff
+*foreground_bold: #ffffff
+
+URxvt.background: #000000
+URxvt.scrollBar: false
+URxvt.cursorColor: #87dde5
+URxvt.cursorBlink: true
+URxvt.borderColor: #000000
+
+URxvt.externalBorder: 0.0
+URxvt.transparent: false
+URxvt.shading: 0
+
+*.color0: #000000
+*.color8: #000000
+
+*.color1: #cc2020
+*.color9: #cc2020
+
+*.color2: #20ca45
+*.color10: #20ca45
+
+*.color3: #abab20
+*.color11: #abab20
+
+*.color4: #5070cc
+*.color12: #5050ff
+
+*.color7: #ffffff
+*.color15: #ffffff
+
+!!URxvt.font:
