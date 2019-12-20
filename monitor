@@ -1,0 +1,22 @@
+#!/bin/bash
+
+mode=$(echo -e "Duplicate\nExtend" | dmenu -p "Mode: ")
+
+monitor=$(echo -e "$(xrandr -q | grep "connected" | awk '{ print $1 }')" | dmenu -p "Monitor to connect (NEW): ")
+
+if [ $mode == "Duplicate" ]
+then
+	xrandr --output $monitor --mode 1920x1080
+fi
+
+if [ $mode == "Extend" ]
+then
+	primaryMonitor=$(echo -e "$(xrandr -q | grep "connected" | awk '{ print $1 }')" | dmenu -p "What's your primary monitor? (OLD): ")
+	position=$(echo -e "left\nup\ndown\nright" | dmenu -p "Position of new monitor (NEW): ")
+	case "$position" in
+		left) xrandr --output $monitor --mode 1920x1080 --left-of $primaryMonitor ;;
+		up) xrandr --output $monitor --mode 1920x1080 --above $primaryMonitor ;;
+		down) xrandr --output $monitor --mode 1920x1080 --below $primaryMonitor ;;
+		right) xrandr --output $monitor --mode 1920x1080 --right-of $primaryMonitor ;;
+	esac
+fi
