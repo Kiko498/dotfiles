@@ -215,25 +215,26 @@ bar {
 	}
 }
 
-# on startup
-
 exec_always feh --bg-scale /root/Pictures/bg.jpg
 exec_always i3-msg gaps inner all set 0
 hide_edge_borders horizontal
 exec_always compton
 
+
+# launching terminals
+
+#exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "apt-get update; bash"
+exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "neofetch; ls; pwd; date; bash"
+
 # multimedia keys
+
 bindsym XF86AudioRaiseVolume exec volume
 bindsym XF86AudioLowerVolume exec volume
-bindsym XF86AudioMute exec amixer sset 'Master' 0; exec echo -e "Audio Muted" | dmenu
+bindsym XF86AudioMute exec amixer sset 'Master' 0
 
 bindsym XF86MonBrightnessUp exec brightness
 bindsym XF86MonBrightnessDown exec brightness
 
-# custom scripts
+# other scripts
+
 bindsym $mod+space exec spotlight_search
-
-# launching terminals
-
-exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "apt-get update; bash"
-exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "neofetch; ls; pwd; date; bash"
