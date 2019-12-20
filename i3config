@@ -24,7 +24,7 @@ font pango:monospace 8
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+# font, it doesn?t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -161,10 +161,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
+        # Pressing left will shrink the window?s width.
+        # Pressing right will grow the window?s width.
+        # Pressing up will shrink the window?s height.
+        # Pressing down will grow the window?s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -211,30 +211,29 @@ bar {
 		focused_workspace	$bg-color		$focused-bg-color	$text-color
 		inactive_workspace	$bg-color		$inactive-bg-color	$focused-bg-color
 		urgent_workspace	$urgent-bg-color	$urgent-bg-color	$text-color	
-		
+
 	}
 }
+
+# on startup
 
 exec_always feh --bg-scale /root/Pictures/bg.jpg
 exec_always i3-msg gaps inner all set 0
 hide_edge_borders horizontal
 exec_always compton
 
-
-# launching terminals
-
-#exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "apt-get update; bash"
-exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "neofetch; ls; pwd; date; bash"
-
 # multimedia keys
-
 bindsym XF86AudioRaiseVolume exec volume
 bindsym XF86AudioLowerVolume exec volume
-bindsym XF86AudioMute exec amixer sset 'Master' 0
+bindsym XF86AudioMute exec amixer sset 'Master' 0; exec echo -e "Audio Muted" | dmenu
 
 bindsym XF86MonBrightnessUp exec brightness
 bindsym XF86MonBrightnessDown exec brightness
 
-# other scripts
-
+# custom scripts
 bindsym $mod+space exec spotlight_search
+
+# launching terminals
+
+exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "apt-get update; bash"
+exec --no-startup-id  i3-msg workspace $ws1; exec urxvt -e sh -c "neofetch; ls; pwd; date; bash"
